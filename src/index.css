@@ -1,0 +1,380 @@
+@import url("https://fonts.googleapis.com/css2?family=Inika:wght@700&family=Itim&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.landing-body {
+  max-width: 100%;
+  max-height: 100%;
+  background-image: url(/public/images/Hall1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  /* background-attachment: fixed;
+  background-position: center center; */
+}
+
+.landing-main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.landing-gifs {
+  display: flex;
+  width: 258px;
+  height: 450px;
+  margin-top: 60%;
+}
+
+button {
+  background-color: #0010a3;
+  color: #fff;
+  font-size: 30px;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.landing-c2 {
+  align-items: center;
+}
+.landing-c2- {
+  margin-top: 15%;
+}
+.button {
+  margin-left: 50px;
+}
+.title {
+  font-family: "Inika", serif;
+  margin-left: 30px;
+  font-size: 60px;
+  color: #6c32cc;
+}
+.subtitle {
+  font-family: "Itim", cursive;
+  color: #2026b1;
+}
+.navbar {
+  display: flex;
+  height: 70px;
+  background-color: #0010a3;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navitems {
+  display: flex;
+  margin: 17px;
+  font-family: "Itim", cursive;
+  font-size: 25px;
+  padding: 0;
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+}
+
+.profile-right {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+ul li {
+  margin: 4px;
+  list-style: none;
+}
+ul li .nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+}
+/* #0610FF */
+
+.nav-link.active,
+.nav-link:hover {
+  background-color: #0610ff;
+  transition: 0.5s;
+}
+
+.home-title {
+  font-family: "Inika", serif;
+  color: #fff;
+  font-size: 35px;
+  margin-left: 20px;
+}
+
+.home-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+/* .home-main-video{
+
+} */
+
+.button-home {
+  font-size: 26px;
+  width: 250px;
+  height: 80px;
+  padding: 10px;
+  margin-top: 20px;
+}
+.home-sec1-div1 {
+  display: flex;
+  flex-direction: row;
+}
+.home-sec1 {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+/* .home-sec2{
+
+} */
+
+.about-sec2-div1 {
+  display: flex;
+  margin: 20px;
+}
+
+.about-img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  margin: 8px;
+}
+.about-img-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  gap: 20px;
+}
+.about-para {
+  margin: 5px;
+  font-family: "Inika", serif;
+  color: #2026b1;
+  font-size: 20px;
+}
+
+.about-sec2-title {
+  font-family: "Itim", cursive;
+  color: #6c32cc;
+  font-size: 40px;
+  margin-left: 23%;
+  margin-top: 10%;
+}
+.contact-main {
+  display: flex;
+  justify-content: space-evenly;
+  height: 80vh;
+  margin-top: 20px;
+}
+
+.contact-form {
+  margin-top: 10px;
+  border: 1px solid black;
+  background-color: #d3fcff;
+  padding: 15px;
+  height: 425px;
+}
+
+.contact-form-row {
+  display: flex;
+  justify-content: space-around;
+}
+.contact-form-ele {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+label {
+  font-family: "Itim", cursive;
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.name,
+.email {
+  height: 40px;
+}
+
+.desc {
+  height: 70px;
+}
+
+.contact-submit-div {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-submit {
+  margin-top: 20px;
+  font-family: "Itim", cursive;
+  height: 52px;
+  width: 132px;
+  font-size: 25px;
+}
+
+.afterupload-main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.after-upload-butt {
+  width: 180px;
+  height: 60px;
+  font-size: 16px;
+}
+
+.file-upload {
+  display: none;
+}
+
+.button-home {
+  background-color: #0010a3;
+  color: #fff;
+  font-size: 30px;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.custom-file-upload {
+  background-color: #0010a3;
+  color: #fff;
+  font-size: 20px;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.landinghome-main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.landinghomeimg1 {
+  width: 500px;
+}
+.landinghomeimg2 {
+  height: 75%;
+  width: 76%;
+}
+.landinghome-sec-2 {
+  display: flex;
+  margin: 30px;
+  justify-content: space-between;
+  gap: 30px;
+}
+.landinghome-sec-1 {
+  font-family: "Inika", serif;
+  font-size: 35px;
+  color: #0010a3;
+}
+.landinghome-sec-2-left {
+  display: flex;
+}
+.landinghome-sec-2-right {
+  display: flex;
+  margin-left: 40px;
+  margin-left: 10%;
+}
+.landinghome-sec2-desc {
+  margin-left: 25%;
+}
+.landinghome-sec2-p {
+  font-size: 20px;
+  color: #6c32cc;
+  margin-left: 6em;
+  font-family: "Itim", cursive;
+}
+.afterupload-main-sec-1 {
+  display: flex;
+}
+.afterupload-main-sec {
+  padding: 20px;
+  height: 530px;
+}
+
+/* Adjust the maximum width of the toolbar */
+.rpv-toolbar {
+  max-width: 100%;
+  overflow: auto; /* Add overflow property to allow scrolling if necessary */
+}
+.rpv-toolbar {
+  justify-content: space-around;
+  height: 40px; /* Adjust height as needed */
+}
+.rpv-core__viewer {
+  width: 60%;
+  height: 300px;
+}
+.rpv-toolbar__item .rpv-core__minimal-button {
+  width: 30px; /* Adjust width of individual items as needed */
+  font-size: 15px;
+}
+.rpv-toolbar__center .rpv-toolbar__item {
+  width: 60px;
+}
+.rpv-toolbar__center .rpv-default-layout__toolbar {
+  justify-content: space-around;
+}
+.rpv-core__viewer {
+  height: 500px;
+  overflow: auto;
+}
+.rpv-core__viewer .rpv-core__viewer--light {
+  width: 70%;
+  height: 40%;
+  overflow: auto;
+}
+
+.rpv-core__viewer--light .rpv-core__inner-container {
+  height: 40%;
+  width: 60%;
+  overflow: auto;
+}
+.rpv-core__inner-pages .rpv-core__inner-pages {
+  width: 60%;
+  height: 40%;
+  overflow: auto;
+}
+.rpv-zoom__popover-target-scale .rpv-zoom__popover-target-scale--ltr {
+  font-size: 30px;
+}
+.rpv-core__menu-item .rpv-core__menu-item--ltr {
+  font-size: 20px;
+}
+.rpv-core__menu-item-label .rpv-core__menu-item-label--ltr {
+  font-size: 15px;
+}
+.default-layout__main {
+  height: 500px;
+  overflow: auto;
+}
+.rpv-default-layout__container {
+  height: 500px;
+  overflow: auto;
+}
+.rpv-core__inner-pages {
+  height: 500px;
+  overflow: auto;
+}
+.default-layout__sidebar {
+  width: 20%;
+}
