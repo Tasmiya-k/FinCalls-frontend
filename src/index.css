@@ -307,6 +307,7 @@ label {
   display: flex;
 }
 .afterupload-main-sec {
+
   padding: 20px;
   height: 530px;
 }
@@ -340,13 +341,13 @@ label {
 }
 .rpv-core__viewer .rpv-core__viewer--light {
   width: 70%;
-  height: 40%;
+  height:0;
   overflow: auto;
 }
 
 .rpv-core__viewer--light .rpv-core__inner-container {
   height: 40%;
-  width: 60%;
+  width: 95%;
   overflow: auto;
 }
 .rpv-core__inner-pages .rpv-core__inner-pages {
@@ -377,4 +378,11 @@ label {
 }
 .default-layout__sidebar {
   width: 20%;
+}
+.afterupload-main-sec-2{
+  display: flex;
+}
+.gett-button{
+  width: 60px;
+  padding-left: 3px;
 }

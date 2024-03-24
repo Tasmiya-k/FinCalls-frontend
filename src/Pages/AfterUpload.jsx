@@ -5,12 +5,9 @@ import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import { useLocation } from "react-router-dom";
-import '@react-pdf-viewer/toolbar/lib/styles/index.css';
+import "@react-pdf-viewer/toolbar/lib/styles/index.css";
 import { NavLink } from "react-router-dom";
-import { searchPlugin, OnHighlightKeyword } from "@react-pdf-viewer/search";
-import { HorizontalScrollingIcon, VerticalScrollingIcon, WrappedScrollingIcon, PageScrollingIcon } from '@react-pdf-viewer/scroll-mode';
-
-
+import Timeline from "./Timeline";
 
 // const searchPluginInstance = searchPlugin({
 //   onHighlightKeyword: (props: OnHighlightKeyword) => {
@@ -27,6 +24,8 @@ export default function AfterUpload(props) {
   const [transcript, setTranscript] = React.useState(false);
   const [structuredSummary, setStructuredSummary] = React.useState(null);
   const [summary, setsummary] = React.useState(null);
+  const [timelineC, settimelineC] = React.useState(null);
+  // const [targetWord, setTargetWord] = React.useState("");
 
   console.log(audio_file_id);
   console.log(transcript_file_id);
@@ -69,7 +68,7 @@ export default function AfterUpload(props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ transcript_file_id }),
+        body: JSON.stringify({ transcript_file_id, pdf_file_id }),
       });
       if (response.ok) {
         const blob = await response.blob();
@@ -79,6 +78,30 @@ export default function AfterUpload(props) {
         setStructuredSummary(url);
         setTranscript(false);
         setchangeDiv(true);
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  const GetTimeline = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/timeline", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ transcript_file_id, pdf_file_id }),
+      });
+      if (response.ok) {
+        // Process the response data
+        // For example, display the timeline analysis results
+        const timelineData = await response.json(); // Parse response data
+        settimelineC(timelineData); // Update state with parsed data
+        setchangeDiv(true);
+        console.log("Timeline analysis results:", await response.json());
       } else {
         console.error("Error:", response.statusText);
       }
@@ -103,12 +126,12 @@ export default function AfterUpload(props) {
             </li>
             <li>
               <button className="after-upload-butt" onClick={GenerateSummary}>
-                Generate Structured Summary
+                Generate Summary
               </button>
             </li>
             <li>
-              <button className="after-upload-butt">
-                Generate Unstructured Summary
+              <button className="after-upload-butt" onClick={GetTimeline}>
+                Timeline Analysis
               </button>
             </li>
             <li>
@@ -155,12 +178,70 @@ export default function AfterUpload(props) {
 
       <div className="afterupload-main-sec">
         {/* //When Generate summary is click this should display the pdf received */}
-        {changeDiv && (transcript || structuredSummary) ? (
+        {changeDiv && (transcript || structuredSummary || timelineC) ? (
           <>
             {transcript && (
               <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
                 <Viewer fileUrl={transcript} plugins={[newplugin1]} />
               </Worker>
+            )}
+            {structuredSummary && (
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                <div>
+                  <Viewer fileUrl={structuredSummary} plugins={[newplugin1]} />
+                </div>
+              </Worker>
+            )}
+            {timelineC && (
+              <div style={{ display: "flex", height: "100vh", margin: 0 }}>
+                <div
+                  id="left-column"
+                  style={{ flex: 1, overflowY: "auto", padding: "10px" }}
+                >
+                  <h1>Analysis Result</h1>
+
+                  <div>
+                    <h2>Past Tense</h2>
+                    {timelineC.highlighted_past.map((sentence, index) => (
+                      <p key={index}>{sentence}</p>
+                    ))}
+                    <p>
+                      Percentage of Past Tense Sentences:{" "}
+                      {timelineC.percent_past}%
+                    </p>
+                  </div>
+
+                  <div>
+                    <h2>Present Tense</h2>
+                    {timelineC.highlighted_present.map((sentence, index) => (
+                      <p key={index}>{sentence}</p>
+                    ))}
+                    <p>
+                      Percentage of Present Tense Sentences:{" "}
+                      {timelineC.percent_present}%
+                    </p>
+                  </div>
+
+                  <div>
+                    <h2>Future Tense</h2>
+                    {timelineC.highlighted_future.map((sentence, index) => (
+                      <p key={index}>{sentence}</p>
+                    ))}
+                    <p>
+                      Percentage of Future Tense Sentences:{" "}
+                      {timelineC.percent_future}%
+                    </p>
+                  </div>
+                </div>
+
+                <div id="right-column" style={{ flex: 1, padding: "10px" }}>
+                  <img
+                    src={`data:image/png;base64,${timelineC.plot_url}`}
+                    alt="Distribution of Tenses"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                </div>
+              </div>
             )}
           </>
         ) : (
@@ -170,7 +251,6 @@ export default function AfterUpload(props) {
           </div>
         )}
       </div>
-
     </div>
   );
 }
