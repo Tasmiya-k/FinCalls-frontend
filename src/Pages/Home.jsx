@@ -13,6 +13,7 @@ export default function Home() {
   const [PDFfile, setPDFfile] = React.useState(null);
   const [viewPdf, setviewPdf] = React.useState(null);
   const [fileUploaded, setFileUploaded] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   //change2
   const audioFileTypes = ["audio/mpeg", "audio/wav", "audio/mp3"];
@@ -51,6 +52,7 @@ export default function Home() {
   useEffect(() => {
     const uploadFile = async () => {
       if (fileUploaded) {
+        setLoading(true);
         const formData = new FormData();
         if (audioFile) formData.append("audioFile", audioFile);
         if (PDFfile) formData.append("pdfFile", PDFfile);
@@ -121,6 +123,12 @@ export default function Home() {
             )}
           </Worker>
         </div> */}
+        {loading && (
+          <div>
+            <img src="images/spinning-loading.gif" alt="Loading" style={{ width: "80px", height: "60px", margin: "0px" }} />
+            <div style={{ fontFamily: "Itim, cursive", fontSize: "16px" }}>Uploading...</div>
+          </div>
+        )}
       </div>
     </div>
   );
